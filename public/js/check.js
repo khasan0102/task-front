@@ -21,7 +21,7 @@ form.addEventListener("submit", async (event) => {
         code: isTrue ? "Hello World" : code.value,
     };
     let lang = select.value
-    let response = await fetch("http://localhost:3000/user/auth", {
+    let response = await fetch("https://task-app-backend-1.herokuapp.com/user/auth", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -7,7 +7,13 @@ const file = document.querySelector("#file");
 const alertt = document.querySelector("#alertt");
 const select = document.querySelector("#select");
 
+select.value = window.localStorage.getItem("lang") || select;
 alertt.style.display = "none";
+
+select.addEventListener("change", () => {
+    window.localStorage.setItem("lang", select.value);
+});
+
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -20,7 +26,7 @@ form.addEventListener("submit", async (event) => {
     formData.append("age", +age.value)
     formData.append("photo", file.files[0])
     let lang = select.value;
-    let response = await fetch("http://localhost:3000/user/create", {
+    let response = await fetch("https://task-app-backend-1.herokuapp.com//user/create", {
         method: "POST",
         headers: {
             authorization: token,

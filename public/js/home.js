@@ -1,6 +1,13 @@
 const row = document.querySelector("#row");
 token = window.localStorage.getItem("token");
 
+select.value = window.localStorage.getItem("lang") || select;
+alertt.style.display = "none";
+
+select.addEventListener("change", () => {
+    window.localStorage.setItem("lang", select.value);
+});
+
 let socket = io("https://task-app-backend-1.herokuapp.com", {
     transports: ["websocket"],
 });
