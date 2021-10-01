@@ -35,4 +35,4 @@ app.get("/change/:token", (req, res) => {
     res.render("change");
 });
 
-app.listen(4000, () => console.log("front serverri ishga tushdi"));
+app.listen(process.env.PORT, 4000, () => console.log("front serverri ishga tushdi"));
