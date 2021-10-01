@@ -2,6 +2,7 @@ const form = document.querySelector("#form");
 const email = document.querySelector("#email");
 const code = document.querySelector("#code");
 const alertt = document.querySelector("#alertt");
+const select = document.querySelector("#select");
 
 alertt.style.display = "none";
 let codeStyle = window.localStorage.getItem("code");
@@ -19,11 +20,12 @@ form.addEventListener("submit", async (event) => {
         email: email.value,
         code: isTrue ? "Hello World" : code.value,
     };
-
-    let response = await fetch("https://task-app-backend-1.herokuapp.com/user/auth", {
+    let lang = select.value
+    let response = await fetch("http://localhost:3000/user/auth", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            lang
         },
         body: JSON.stringify(obj),
     });

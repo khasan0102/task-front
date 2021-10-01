@@ -2,6 +2,7 @@ const form = document.querySelector("#form");
 const password1 = document.querySelector("#pass");
 const password = document.querySelector("#pass2");
 const alertt = document.querySelector("#alertt");
+const select = document.querySelector("#select");
 alertt.style.display = "none";
 
 form.onsubmit = async (event) => {
@@ -12,11 +13,13 @@ form.onsubmit = async (event) => {
         alertt.textContent = "Password don't confirmation";
         return ""
     }
-    console.log(url)
+
+    let lang = select.value;
     let response = await fetch("https://task-app-backend-1.herokuapp.com/user/changePassword/" + url, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            lang
         },
         body: JSON.stringify({
             password: password.value

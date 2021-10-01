@@ -5,6 +5,7 @@ const password = document.querySelector("#password");
 const age = document.querySelector("#age");
 const file = document.querySelector("#file");
 const alertt = document.querySelector("#alertt");
+const select = document.querySelector("#select");
 
 alertt.style.display = "none";
 
@@ -18,11 +19,12 @@ form.addEventListener("submit", async (event) => {
     formData.append("password", password.value)
     formData.append("age", +age.value)
     formData.append("photo", file.files[0])
-
-    let response = await fetch("https://task-app-backend-1.herokuapp.com/user/create", {
+    let lang = select.value;
+    let response = await fetch("http://localhost:3000/user/create", {
         method: "POST",
         headers: {
-            authorization: token
+            authorization: token,
+            lang
         },
         body: formData
     });
