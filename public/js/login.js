@@ -27,7 +27,7 @@ form.onsubmit = async (event) => {
 
     response = await response.json();
     console.log(response);
-    if(response.error) {
+    if(!response.succes) {
         alertt.style.display = "block";
         alertt.textContent = response.message;
     }else {
