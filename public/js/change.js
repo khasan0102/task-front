@@ -33,7 +33,7 @@ form.onsubmit = async (event) => {
 
     response = await response.json();
     
-    if(response.error) {
+    if(!response.succes) {
         alertt.style.display = "block";
         alertt.textContent = response.message;
         alertt.style.padding = "15px"
