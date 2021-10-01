@@ -1,7 +1,7 @@
 const row = document.querySelector("#row");
 token = window.localStorage.getItem("token");
-
-select.value = window.localStorage.getItem("lang") || select;
+const select = document.querySelector("#select");
+select.value = window.localStorage.getItem("lang") || select.value;
 alertt.style.display = "none";
 
 select.addEventListener("change", () => {
@@ -110,3 +110,9 @@ socket.on("users", ({ users }) => {
 });
 
 getUsers();
+
+
+exit.onclick = () => {
+    window.localStorage.clear();
+    window.location = '/login';
+}

@@ -3,7 +3,12 @@ const email = document.querySelector("#email");
 const code = document.querySelector("#code");
 const alertt = document.querySelector("#alertt");
 const select = document.querySelector("#select");
+select.value = window.localStorage.getItem("lang") || select.value;
+alertt.style.display = "none";
 
+select.addEventListener("change", () => {
+    window.localStorage.setItem("lang", select.value);
+});
 alertt.style.display = "none";
 let codeStyle = window.localStorage.getItem("code");
 
@@ -31,7 +36,7 @@ form.addEventListener("submit", async (event) => {
     });
 
     response = await response.json();
-
+    console.log(response)
     if (response.error) {
         alertt.style.display = "block";
         alertt.textContent = response.message;
