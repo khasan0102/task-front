@@ -1,7 +1,7 @@
 const row = document.querySelector("#row");
 token = window.localStorage.getItem("token");
 
-let socket = io("", {
+let socket = io("https://task-app-backend-1.herokuapp.com", {
     transports: ["websocket"],
 });
 
