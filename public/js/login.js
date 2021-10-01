@@ -13,6 +13,7 @@ select.addEventListener("change", () => {
 form.onsubmit = async (event) => {
     event.preventDefault();
     let lang = select.value;
+    console.log(lang);
     let response = await fetch("https://task-app-backend-1.herokuapp.com/user/login", {
         method: "POST",
         headers: {
@@ -26,7 +27,6 @@ form.onsubmit = async (event) => {
     });
 
     response = await response.json();
-    console.log(response);
     if(!response.succes) {
         alertt.style.display = "block";
         alertt.textContent = response.message;
