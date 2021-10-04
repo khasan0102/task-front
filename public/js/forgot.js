@@ -12,7 +12,7 @@ select.addEventListener("change", () => {
 form.onsubmit = async (event) => {
     event.preventDefault();
     let lang = select.value;
-    let response = await fetch("https://task-app-backend-1.herokuapp.com/user/reset", {
+    let response = await fetch(host + "/user/reset", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

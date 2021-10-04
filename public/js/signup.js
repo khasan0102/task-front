@@ -26,7 +26,7 @@ form.addEventListener("submit", async (event) => {
     formData.append("age", +age.value)
     formData.append("photo", file.files[0])
     let lang = select.value;
-    let response = await fetch("https://task-app-backend-1.herokuapp.com/user/create", {
+    let response = await fetch(host + "/user/create", {
         method: "POST",
         headers: {
             authorization: token,

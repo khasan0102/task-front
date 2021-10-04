@@ -26,7 +26,7 @@ form.addEventListener("submit", async (event) => {
         code: isTrue ? "Hello World" : code.value,
     };
     let lang = select.value
-    let response = await fetch("https://task-app-backend-1.herokuapp.com/user/auth", {
+    let response = await fetch(host + "/user/auth", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -36,6 +36,7 @@ form.addEventListener("submit", async (event) => {
     });
 
     response = await response.json();
+    
     if (!response.succes) {
         alertt.style.display = "block";
         alertt.textContent = response.message;

@@ -20,7 +20,7 @@ form.onsubmit = async (event) => {
     }
 
     let lang = select.value;
-    let response = await fetch("https://task-app-backend-1.herokuapp.com/user/changePassword/" + url, {
+    let response = await fetch(host + "/user/changePassword/" + url, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

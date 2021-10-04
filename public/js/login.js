@@ -14,7 +14,7 @@ form.onsubmit = async (event) => {
     event.preventDefault();
     let lang = select.value;
     console.log(lang);
-    let response = await fetch("https://task-app-backend-1.herokuapp.com/user/login", {
+    let response = await fetch(host + "/user/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

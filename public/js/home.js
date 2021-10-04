@@ -7,50 +7,16 @@ select.addEventListener("change", () => {
     window.localStorage.setItem("lang", select.value);
 });
 
-let socket = io("https://task-app-backend-1.herokuapp.com", {
+let socket = io(host, {
     transports: ["websocket"],
 });
 
 socket.emit("connected", { token });
 
-socket.on("hello", async ({ user_id, date }) => {
-    let elements = document.querySelectorAll(".card-text1");
-    let counts = document.querySelectorAll(".btn-primary");
-    let isTrue = true;
-    for (let el of elements) {
-        if (el.id == user_id) {
-            el.textContent = date;
-            isTrue = false;
-            break;
-        }
-    }
-
-    for (let el of counts) {
-        if (el.id == user_id && date == "online") {
-            el.textContent = "Count of entries: " + ++el.dataset.count
-            break;
-        }
-    }
-
-    if (isTrue) {
-        let response = await fetch("https://task-app-backend-1.herokuapp.com/user/" + user_id, {
-            method: "GET",
-            headers: {
-                authorization: token
-            }
-        });
 
 
-        response = await response.json();
-        console.log(response);
-        if(response.succes){
-            makeElement(response.data.user, row)
-        }
-    }
-});
 
-
-function makeElement(el, element) {
+function makeElement(el, element, isOnline) {
     let col = document.createElement("div");
     let card = document.createElement("div");
     let img = document.createElement("img");
@@ -82,7 +48,7 @@ function makeElement(el, element) {
     email.textContent = el.email;
     p.textContent = el.surname;
     span.textContent = "Count of entries: " + el.count_views;
-    onlineText.textContent = el.online_time;
+    onlineText.textContent = isOnline;
     span.id = el._id
     span.dataset.count = el.count_views
 
@@ -103,12 +69,48 @@ function makeElement(el, element) {
 function renderElements(array, element) {
     element.innerHTML = null;
     for (let el of array) {
-        makeElement(el, element)
+        makeElement(el, element, el.online_time)
     }
+
+    socket.on("hello", async ({ user_id, date }) => {
+        let elements = document.querySelectorAll(".card-text1");
+        let counts = document.querySelectorAll(".btn-primary");
+        let isTrue = true;
+        for (let el of elements) {
+            if (el.id == user_id) {
+                el.textContent = date;
+                isTrue = false;
+                break;
+            }
+        }
+    
+        for (let el of counts) {
+            if (el.id == user_id && date == "online") {
+                el.textContent = "Count of entries: " + ++el.dataset.count
+                break;
+            }
+        }
+    
+        if (isTrue) {
+            let response = await fetch(host + "/user/" + user_id, {
+                method: "GET",
+                headers: {
+                    authorization: token
+                }
+            });
+    
+    
+            response = await response.json();
+            console.log(response);
+            if(response.succes){
+                makeElement(response.data.user, row, "online")
+            }
+        }
+    });
 }
 
 async function getUsers() {
-    let response = await fetch("https://task-app-backend-1.herokuapp.com/user/all", {
+    let response = await fetch(host + "/user/all", {
         method: "GET",
         headers: {
             authorization: token,
