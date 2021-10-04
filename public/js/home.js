@@ -40,6 +40,12 @@ socket.on("hello", async ({ user_id, date }) => {
             }
         });
 
+
+        response = await response.json();
+
+        if(response.succes){
+            makeElement(response.data.user)
+        }
     }
 });
 
