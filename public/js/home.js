@@ -33,7 +33,7 @@ socket.on("hello", async ({ user_id, date }) => {
     }
 
     if (isTrue) {
-        let response = await fetch("https://task-app-backend-1.herokuapp.com/user/getOne", {
+        let response = await fetch("https://task-app-backend-1.herokuapp.com/user/" + user_id, {
             method: "GET",
             headers: {
                 authorization: token
