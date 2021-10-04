@@ -82,7 +82,7 @@ function makeElement(el, element) {
     email.textContent = el.email;
     p.textContent = el.surname;
     span.textContent = "Count of entries: " + el.count_views;
-    onlineText.textContent = "     ";
+    onlineText.textContent = el.online_time;
     span.id = el._id
     span.dataset.count = el.count_views
 
@@ -121,9 +121,7 @@ async function getUsers() {
 
 socket.on("users", ({ users }) => {
     setTimeout(() => {
-        console.log("hello world");
         let elements = document.querySelectorAll(".card-text1");
-        let counts = document.querySelectorAll(".btn-primary")
         for (let el of elements) {
             if (users[el.id]) {
                 if (users[el.id].id) el.textContent = "online";
