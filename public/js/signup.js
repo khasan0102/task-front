@@ -21,7 +21,7 @@ form.addEventListener("submit", async (event) => {
 
     formData = new FormData();
     formData.append("name", ism.value)
-    formData.append("surname", surname.value)
+    formData.append("lastname", surname.value)
     formData.append("password", password.value)
     formData.append("age", +age.value)
     formData.append("photo", file.files[0])
