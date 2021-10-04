@@ -44,7 +44,7 @@ socket.on("hello", async ({ user_id, date }) => {
         response = await response.json();
         console.log(response);
         if(response.succes){
-            makeElement(response.data.user)
+            makeElement(response.data.user, row)
         }
     }
 });
