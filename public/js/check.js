@@ -3,6 +3,7 @@ const email = document.querySelector("#email");
 const code = document.querySelector("#code");
 const alertt = document.querySelector("#alertt");
 const select = document.querySelector("#select");
+window.localStorage.clear();
 select.value = window.localStorage.getItem("lang") || select.value;
 alertt.style.display = "none";
 
