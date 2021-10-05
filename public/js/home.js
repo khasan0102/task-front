@@ -122,14 +122,16 @@ async function getUsers() {
 }
 
 socket.on("users", ({ users }) => {
+    console.log(users)
     setTimeout(() => {
         let elements = document.querySelectorAll(".card-text1");
         for (let el of elements) {
+            console.log(el.id)
             if (users[el.id]) {
                 if (users[el.id].id) el.textContent = "online";
             }
         }
-    }, 250);
+    }, 800);
 });
 
 getUsers();
