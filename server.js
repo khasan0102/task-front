@@ -15,9 +15,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.get("/", async (req, res) => {
     const ip = RequestIp.getClientIp(req);
-    
-    
-    console.log(address)
+
+    console.log(ip)
     res.render("index")
 });
 
@@ -44,4 +43,4 @@ app.get("/change/:token", (req, res) => {
 
 
 
-app.listen(process.env.PORT || 4000, () => console.log("front serverri ishga tushdi herokuda"));
+app.listen(process.env.PORT || 4000, () => console.log("front serverri ishga tushdi"));
