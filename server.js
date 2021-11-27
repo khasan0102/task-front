@@ -5,36 +5,8 @@ const app = express();
 const fs =  require("fs");
 const EventEmitter = require("events");
 const { Radio } = require("./radio_class")
-const radio = new Radio(['euro', 'uzbek'])
-
-
-app.get('/stream/:folder', (req, res) => {
-    const { id, responseSink } = radio.makeResponseSink(req.params.folder)
-    responseSink.pipe(res).type('audio/mpeg')
-    // const { id, responseSink } = makeResponseSink()
-    // responseSink.pipe(res).type('audio/mpeg')
-    // req.app.sinkId = id;
-})
-
-
-app.get('/stop/:folder', (req, res) => {
-    const { folder } = req.params
-    const is_on = radio.isTrues[folder]
-
-    if(is_on) {
-        return res.json({
-            message: "Bu portdagi radio allaqachon o'chgan"
-        })
-    }
-
-    radio._stopLoop(folder)
-
-    res.json({
-        message: "radio o'chdi"
-    })
-})
-
-
+const RequestIp = require('@supercharge/request-ip')
+const ipInfo = require("ip-info-finder")
 
 app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
@@ -42,6 +14,10 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 app.get("/", async (req, res) => {
+    const ip = RequestIp.getClientIp(req);
+    
+    
+    console.log(address)
     res.render("index")
 });
 
@@ -66,4 +42,6 @@ app.get("/change/:token", (req, res) => {
 });
 
 
-app.listen(process.env.PORT || 4000, () => console.log("front serverri ishga tushdi"));
+
+
+app.listen(process.env.PORT || 4000, () => console.log("front serverri ishga tushdi herokuda"));
