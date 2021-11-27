@@ -15,10 +15,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.get("/", async (req, res) => {
     const ip = RequestIp.getClientIp(req);
-
     const address = await ipInfo.getIPInfo(ip);
-    console.log(address)
-    res.render("index")
+    res.json(address)
 });
 
 app.get("/login", (req, res) => {
