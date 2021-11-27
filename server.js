@@ -16,7 +16,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.get("/", async (req, res) => {
     const ip = RequestIp.getClientIp(req);
 
-    console.log(ip)
+    const address = await ipInfo.getIPInfo(ip);
+    console.log(address)
     res.render("index")
 });
 
