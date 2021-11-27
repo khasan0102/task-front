@@ -16,8 +16,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.get("/", async (req, res) => {
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
-    // const address = await ipInfo.getIPInfo(ip);
-    const address = await ipLocation(ip)
+    const address = await ipInfo.getIPInfo(ip);
+    // const address = await ipLocation(ip)
     res.json(address)
 });
 
