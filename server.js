@@ -44,9 +44,9 @@ app.get("/", async (req, res) => {
     // const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
     // const address = await ipInfo.getIPInfo(ip);
     // const city = await client.city('81.95.233.165')
-    const arr = [] 
-    const rows = await fetchAll(query, arr.length, arr);
-    console.log(rows)
+    // const arr = [] 
+    // const rows = await fetchAll(query, arr.length, arr);
+    // console.log(rows)
     res.json({
         message: "Hello"
     })
