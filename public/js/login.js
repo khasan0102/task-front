@@ -12,27 +12,22 @@ select.addEventListener("change", () => {
 
 form.onsubmit = async (event) => {
     event.preventDefault();
-    let lang = select.value;
-    console.log(lang);
-    let response = await fetch(host + "/user/login", {
+    console.log("ishga tushdi")
+    const response = await fetch('https://api.izmacrm.uz/login', {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
-            lang
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            email: email.value.toLowerCase(),
-            password: password.value
+            phoneNumber: 998998616951,
+            password: "12345",
+            hashtag: "demo"
         })
     });
 
-    response = await response.json();
-    if(!response.succes) {
-        alertt.style.display = "block";
-        alertt.textContent = response.message;
-    }else {
-        window.localStorage.setItem("token", response.data.token);
-        window.location = '/';
-    }
-    
+    console.log(await response.json())
+
+
 }
+
+
