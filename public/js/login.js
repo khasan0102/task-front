@@ -11,23 +11,7 @@ select.addEventListener("change", () => {
 });
 
 form.onsubmit = async (event) => {
-    event.preventDefault();
-    console.log("ishga tushdi")
-    const response = await fetch('https://api.izmacrm.uz/login', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            phoneNumber: 998998616951,
-            password: "12345",
-            hashtag: "demo"
-        })
-    });
-
-    console.log(await response.json())
-
-
+    
 }
 
 
